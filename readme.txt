@@ -8,7 +8,7 @@ Tested up to:      5.7
 Stable tag:        1.0.0
 License:           GNU General Public License v3
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
-Tags:              webman, webman design, elementor pro, theme builder, themes
+Tags:              webman, webman design, beaver themer, beaver builder, themes
 
 Provides support for Beaver Themer in WebMan Design accessibility ready themes.
 

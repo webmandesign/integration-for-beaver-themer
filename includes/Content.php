@@ -18,6 +18,15 @@ defined( 'ABSPATH' ) || exit;
 class Content {
 
 	/**
+	 * Template post type.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @var     string
+	 */
+	private static $post_type = 'fl-theme-layout';
+
+	/**
 	 * Initialization.
 	 *
 	 * @since  1.0.0
@@ -31,6 +40,8 @@ class Content {
 			// Actions
 
 				add_action( 'wp', __CLASS__ . '::setup_display', 99 );
+
+				add_action( 'wp_enqueue_scripts', __CLASS__ . '::styles', 99 );
 
 	} // /init
 
@@ -70,5 +81,47 @@ class Content {
 			}
 
 	} // /setup_display
+
+	/**
+	 * Add editor styles.
+	 *
+	 * @since  1.0.0
+	 *
+	 * @return  void
+	 */
+	public static function styles() {
+
+		// Requirements check
+
+			if ( ! wp_style_is( 'fl-theme-builder-layout-frontend-edit', 'enqueued' ) ) {
+				return;
+			}
+
+
+		// Processing
+
+			wp_add_inline_style( 'fl-theme-builder-layout-frontend-edit', '
+
+				.fl-theme-builder-header .entry-content-singular > div,
+				.fl-theme-builder-footer .entry-content-singular > div {
+					height: auto;
+					padding: 3em !important;
+					font-size: 1.5em;
+					font-weight: 300;
+					font-style: italic;
+					text-align: center;
+					background-image: repeating-linear-gradient(
+						-45deg,
+						rgba( 0,0,0, .05 ),
+						rgba( 0,0,0, .05 ) 5px,
+						rgba( 255,255,255, .1 ) 5px,
+						rgba( 255,255,255, .1 ) 10px
+					);
+					opacity: 1 !important;
+				}
+
+			' );
+
+	} // /styles
 
 }
